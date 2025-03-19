@@ -3,173 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abstraction Explained-BJ</title>
+    <title>Encapsulation in OOP</title>
     <style>
-        /* CSS for page styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fa;
-            color: #333;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        .container {
-            width: 80%;
-            max-width: 900px;
-            margin: 20px auto;
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
-        h1 {
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin: 20px;
+        }
+
+        .card-header {
+            background-color: #3e8e41;
+            padding: 40px;
+            color: white;
             text-align: center;
-            color: #2c3e50;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            padding: 10px;
+            line-height: 1.7;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+        }
+
+        .card-body strong {
+            font-weight: bold;
+            color: #3e8e41;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 30px;
             margin-bottom: 20px;
         }
 
-        h2 {
-            color: #2980b9;
-            margin-top: 20px;
-        }
-
-        p {
-            line-height: 1.6;
+        ul li {
             margin-bottom: 10px;
         }
 
-        code {
-            background-color: #cfcbdf;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-
         pre {
-            background-color: #cfce72;
+            background-color: #1e1e1e;
+            color: #dcdcdc;
             padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: monospace;
+            border-radius: 10px;
             overflow-x: auto;
-            margin-top: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        button {
-            background-color: #3498db;
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #dcdcdc;
+        }
+
+        /* Button Styling */
+        .show-btn {
+            background-color: #3e8e41;
             color: white;
-            padding: 10px 15px;
+            font-size: 1rem;
+            padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
         }
 
-        button:hover {
-            background-color: #2980b9;
+        .show-btn:hover {
+            background-color: #366d2e;
         }
 
-        .hidden {
+        /* Initially hide the example code */
+        .example-code {
             display: none;
-        }
-        .logo {
-            font-size: 3rem; /* Size of the text */
-            text-align: center;
-            
-          font-family: 'Brush Script MT', Times, serif;
-            animation: neonEffect 3s ease-in-out infinite alternate; /* Animation */
-            display: inline-block;
-            color: #fff;
-        }
-
-        /* Keyframe animation for transforming and color change */
-        @keyframes neonEffect {
-            0% {
-                transform: scale(1);
-                color: #ff4f4f; /* Red color */
-            }
-            25% {
-                transform: scale(1.1);
-                color: #3d17c7; /* Orange color */
-            }
-            50% {
-                transform: scale(1);
-                color: #eeee3f; /* Yellow color */
-            }
-         
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h2 class="logo">Baluku Josephats</h2>
-    <div class="container">
-        <h1>W02 Assignment: Explain Abstraction</h1>
 
-        <section>
-            <h2>What is Abstraction?</h2>
-            <p>Abstraction is a core principle in object-oriented programming (OOP) that involves simplifying complex systems by hiding unnecessary details and exposing only the essential features. It allows developers to focus on high-level concepts without needing to understand all the intricate, underlying mechanisms. Essentially, abstraction helps to break down a problem into smaller, manageable parts, which is crucial for managing complexity in larger software systems.</p>
-            <p>The benefit of abstraction is that it promotes modularity and reusability. By creating clear boundaries between different components of a program, we can easily modify or extend parts of the system without affecting others. This makes the software easier to maintain, understand, and debug.</p>
-            <p>A practical example of abstraction in real-world software development is using the <code>print()</code> function in Python. The user doesn't need to know the details about how printing works at the machine level. Instead, they just use the function name and pass the data they want to print.</p>
-        </section>
-
-        <section>
-            <h2>Example from My Program</h2>
-            <p>In the program I wrote, the abstraction is demonstrated through the <code>Job</code> and <code>Resume</code> classes. The <code>Job</code> class encapsulates details about a job (such as the company name, job title, and years worked) while hiding the implementation details of how the job data is managed. The <code>Resume</code> class uses a list of <code>Job</code> instances to maintain and display a person's work history.</p>
-            
-            <button onclick="toggleCode()">Show Example Code</button>
-            <pre id="code-block" class="hidden">
-public class Job
-{
-    public string _jobTitle;
-    public string _company;
-    public int _startYear;
-    public int _endYear;
-
-    public void DisplayJobDetails()
-    {
-        Console.WriteLine($"{_jobTitle} ({_company}) {_startYear}-{_endYear}");
-    }
-}
-
-public class Resume
-{
-    public string _name;
-    public List<Job> _jobs = new List<Job>();
-
-    public void Display()
-    {
-        Console.WriteLine($"Name: {_name}");
-        Console.WriteLine("Jobs:");
-        foreach (Job job in _jobs)
-        {
-            job.DisplayJobDetails();
-        }
-    }
-}
-            </pre>
-        </section>
-
-        <section>
-            <h2>Why Abstraction is Important</h2>
-            <ul>
-                <li><strong>Simplification:</strong> Abstraction hides unnecessary complexity, letting developers focus on high-level functionality.</li>
-                <li><strong>Modularity:</strong> It promotes breaking a system into smaller, manageable components, each responsible for specific tasks.</li>
-                <li><strong>Reusability:</strong> Abstracted components are easier to reuse across the system.</li>
-                <li><strong>Maintainability:</strong> You can easily change or extend parts of the system without affecting others.</li>
-                <li><strong>Security:</strong> By hiding sensitive implementation details, abstraction can improve security.</li>
-            </ul>
-        </section>
+<div class="card">
+    <div class="card-header">
+        Encapsulation in Object-Oriented Programming <strong style="color: deeppink;">Baluku Josephats</strong>
     </div>
+    <div class="card-body">
+        <p><strong>What is Encapsulation?</strong></p>
+        <p>Encapsulation is a fundamental principle of Object-Oriented Programming (OOP) that restricts direct access to the internal details of a class. It ensures that data is kept private and can only be accessed or modified through well-defined methods.</p>
+        
+        <p><strong>Benefits of Encapsulation:</strong></p>
+        <ul>
+            <li><strong>Data Security:</strong> Prevents unauthorized access or modification of internal data.</li>
+            <li><strong>Improved Maintainability:</strong> Changes to internal data do not affect external code interacting with the class.</li>
+        </ul>
 
-    <script>
-        // JavaScript to toggle code block visibility
-        function toggleCode() {
-            const codeBlock = document.getElementById("code-block");
-            // Toggle the hidden class to show/hide the code
-            codeBlock.classList.toggle("hidden");
+        <p><strong>Application Example:</strong></p>
+        <p>In a bank account system, a user's balance should not be directly accessible. Instead, it should be modified through deposit and withdrawal methods to ensure security and maintain business logic.</p>
+
+        <!-- Button to show/hide the example program -->
+        <button class="show-btn" onclick="toggleExampleCode()">Show Example Program</button>
+
+        <!-- Hidden example program code -->
+        <div class="example-code">
+            <p><strong>Example Code in C#:</strong></p>
+            <pre><code class="language-csharp">
+class BankAccount
+{
+    private double balance;
+
+    public BankAccount(double initialBalance)
+    {
+        balance = initialBalance;
+    }
+
+    public double GetBalance()
+    {
+        return balance;
+    }
+
+    public void Deposit(double amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
         }
-    </script>
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        BankAccount account = new BankAccount(1000);
+        account.Deposit(500);
+        Console.WriteLine(account.GetBalance()); // Output: 1500
+    }
+}
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleExampleCode() {
+        var exampleCodeDiv = document.querySelector('.example-code');
+        // Toggle visibility of the example code
+        if (exampleCodeDiv.style.display === "none" || exampleCodeDiv.style.display === "") {
+            exampleCodeDiv.style.display = "block";
+        } else {
+            exampleCodeDiv.style.display = "none";
+        }
+    }
+</script>
+
 </body>
 </html>
